@@ -28,7 +28,13 @@ function Header(props) {
         <Logo />
         {isAuthenticated && <Menu />}
       </div>
-      <div>{props.children}</div>
+      <div
+        css={css`
+          height: 100%;
+        `}
+      >
+        {props.children}
+      </div>
     </div>
   );
 }

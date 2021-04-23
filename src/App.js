@@ -1,12 +1,14 @@
 import { BrowserRouter, Route } from "react-router-dom";
 import AdminRegister from "./component/auth/AdminRegister";
 import CustomerRegister from "./component/auth/CustomerRegister";
-import Login from "./component/auth/Login";
+
 import ProductList from "./component/Product/ProductList";
-import Auth from "./pages/Auth";
+// import Auth from "./pages/Auth";
 import Home from "./pages/Home";
 import Cart from "./component/Product/Cart";
 import Placeorders from "./pages/Placeorders";
+import AdminLogin from "./component/auth/AdminLogin";
+import CustomerLogin from "./component/auth/CustomerLogin";
 
 // const privateRoutes = [
 //   {
@@ -14,20 +16,20 @@ import Placeorders from "./pages/Placeorders";
 //     component: Auth,
 //   },
 // ];
-const publicRoutes = [
-  {
-    path: "/",
-    component: Home,
-  },
-  {
-    path: "/register",
-    component: Auth,
-  },
-  // {
-  //   path: "/product/all",
-  //   component: Product,
-  // },
-];
+// const publicRoutes = [
+//   {
+//     path: "/",
+//     component: Home,
+//   },
+//   {
+//     path: "/register",
+//     component: Auth,
+//   },
+//   // {
+//   //   path: "/product/all",
+//   //   component: Product,
+//   // },
+// ];
 
 function App() {
   // const { isAuthenticated } = useContext(AuthContext);
@@ -35,7 +37,8 @@ function App() {
     <BrowserRouter>
       <div>
         <Route path="/" exact component={Home}></Route>
-        <Route path="/login" exact component={Login}></Route>
+        <Route path="/admin/login" exact component={AdminLogin}></Route>
+        <Route path="/customer/login" exact component={CustomerLogin}></Route>
         <Route path="/admin/register" exact component={AdminRegister}></Route>
         <Route
           path="/customer/register"

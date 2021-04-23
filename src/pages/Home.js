@@ -1,5 +1,5 @@
 /**@jsxImportSource @emotion/react */
-import React from "react";
+import React, { useState } from "react";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
@@ -14,6 +14,8 @@ function Home() {
     color: #fff;
     border: none;
   `;
+  const [toggleLogin, setToggleLogin] = useState(false);
+  const [toggleRegister, setToggleRegister] = useState(false);
 
   return (
     <div
@@ -35,8 +37,8 @@ function Home() {
       >
         <h1>Welcome to "🍑 Kai TOOD!!"</h1>
         <h4>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam,
-          rem.
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam
+          tempore, voluptatibus iusto deserunt vel accusamus.
         </h4>
       </div>
       <Link to="/product">
@@ -51,7 +53,7 @@ function Home() {
           `}
           type="submit"
         >
-          👀 CHECK OUR PRODUCT HERE!!!!
+          👀 CHECK OUR PRODUCT HERE 👀 !!!!
         </StyledButton>
       </Link>
       <div
@@ -64,15 +66,45 @@ function Home() {
           justify-content: space-evenly;
         `}
       >
-        <Link to="/Login">
-          <StyledButton type="submit">LOGIN</StyledButton>
-        </Link>
-        <Link to="/admin/register">
-          <StyledButton type="submit">REGISTER AS ADMIN</StyledButton>
-        </Link>
-        <Link to="/customer/register">
-          <StyledButton type="submit">REGISTER AS CUSTOMER</StyledButton>
-        </Link>
+        {!toggleLogin && (
+          <StyledButton
+            onClick={() => {
+              setToggleLogin(!toggleLogin);
+            }}
+          >
+            LOGIN
+          </StyledButton>
+        )}
+        {toggleLogin && (
+          <>
+            <Link to="/admin/login">
+              <StyledButton type="submit">LOGIN AS ADMIN</StyledButton>
+            </Link>
+            <Link to="/customer/login">
+              <StyledButton type="submit">LOGIN AS CUSTOMER</StyledButton>
+            </Link>
+          </>
+        )}
+
+        {!toggleRegister && (
+          <StyledButton
+            onClick={() => {
+              setToggleRegister(!toggleRegister);
+            }}
+          >
+            REGISTER
+          </StyledButton>
+        )}
+        {toggleRegister && (
+          <>
+            <Link to="/admin/register">
+              <StyledButton type="submit">REGISTER AS ADMIN</StyledButton>
+            </Link>
+            <Link to="/customer/register">
+              <StyledButton type="submit">REGISTER AS CUSTOMER</StyledButton>
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

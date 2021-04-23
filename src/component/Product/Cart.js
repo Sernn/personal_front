@@ -2,20 +2,26 @@ import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../contexts/CartContextProvider";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+/**@jsxImportSource @emotion/react */
+import styled from "@emotion/styled";
 
 export default function Cart() {
   const { cart } = useContext(CartContext);
   const [summary, setSummary] = useState(0);
 
+  const StyledButton = styled.button`
+    border-radius: 8px;
+    padding: 5px;
+    height: 50px;
+    width: 200px;
+    background-color: #eac3b9;
+    color: #fff;
+    border: none;
+    margin: 15px 15px 15px 0;
+  `;
+
   const summaryPrice = () => {
     if (cart.length > 0) {
-      // cart.reduce((acc, cur) => {
-      //   setSummary(
-      //     Number(acc.price) * Number(acc.count) +
-      //       Number(cur.price) * Number(cur.count)
-      //   );
-      //   return Number(cur) + Number(acc);
-      // }, 0);
       let initV = 0;
       cart.map((itm) => {
         setSummary((initV += itm.price * itm.count));
@@ -31,7 +37,7 @@ export default function Cart() {
   const history = useHistory();
 
   const handleOrder = async () => {
-    const res = await axios.post("/order/", {
+    await axios.post("/order/", {
       amount: summary,
       status: "PENDING",
       order: cart,
@@ -62,7 +68,7 @@ export default function Cart() {
         ))}
         {summary > 0 ? <p>Summary price : {summary}</p> : null}
       </div>
-      <button onClick={handleOrder}>Place Orders</button>
+      <StyledButton onClick={handleOrder}>Place Orders</StyledButton>
     </div>
   );
 }

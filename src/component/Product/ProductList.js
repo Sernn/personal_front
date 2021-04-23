@@ -1,10 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
 /**@jsxImportSource @emotion/react */
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "../../config/axios";
 import { CartContext } from "../../contexts/CartContextProvider";
 import SelectedQuantity from "./SelectedQuantity";
-import { css } from "@emotion/react";
+
+const StyledButton = styled.button`
+  border-radius: 8px;
+  padding: 5px;
+  height: 50px;
+  width: 200px;
+  background-color: #eac3b9;
+  color: #fff;
+  border: none;
+  margin: 15px 15px 15px 0;
+`;
 
 const sortArr = (arr) => {
   let obj = arr.reduce((map, val) => {
@@ -26,7 +38,7 @@ const sortArr = (arr) => {
 const ProductList = () => {
   const [products, setProducts] = useState(null);
   const [selectedPd, setSelectedPd] = useState([]);
-  const { cart, setCart, setPDs } = useContext(CartContext);
+  const { setCart, setPDs } = useContext(CartContext);
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -60,88 +72,112 @@ const ProductList = () => {
 
   return (
     <div>
-      <input size="50" type="text" placeholder="SEARCH PRODUCT HERE" />
-      <h1>THIS IS ALL PRODUCT</h1>
+      <h1
+        css={css`
+          display: flex;
+          justify-content: center;
+        `}
+      >
+        THIS IS ALL PRODUCT
+      </h1>
       <div
         css={css`
           display: flex;
-          justify-content: space-evenly;
+          flexdirection: column;
+          justify-content: center;
           align-items: center;
+          flex-wrap: wrap;
+          padding: 10px;
+          margin: 5px;
         `}
       >
-        {products?.map((product) => (
-          <div
-            className="card"
-            key={product.id}
-            css={css`
-              border-radius: 8px;
-              box-shadow: 3px 3px 5px 6px #ccc;
-              width: 450px;
-              height: 300px;
-              display: flex;
-              flex-direction: column;
-            `}
-          >
+        <div
+          css={css`
+            display: flex;
+            flexdirection: column;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 10px;
+          `}
+        >
+          {products?.map((product) => (
             <div
-              className="detail"
+              className="card"
+              key={product.id}
               css={css`
+                border-radius: 5px;
+                box-shadow: 3px 3px 5px 6px #ccc;
+                width: 400px;
+                height: 250px;
                 display: flex;
+                flex-direction: column;
+                margin: 10px;
+                padding: 5px;
+                overflow: scroll;
               `}
             >
               <div
-                className="pic"
-                css={css`
-                  background-color: #5f5f5f;
-                  width: 250px;
-                  height: 250px;
-                `}
-              >
-                pic
-              </div>
-              <div
-                className="content"
+                className="detail"
                 css={css`
                   display: flex;
-                  flex-flow: column;
                 `}
               >
-                <p>
-                  <b>name :</b>
-                  {product.name}
-                </p>
-                <p>
-                  <b>desc :</b>
-                  {product.desc.length >= 100
-                    ? product.desc.slice(0, 20) + "..."
-                    : product.desc}
-                </p>
-                <p>
-                  <b>price :</b>
-                  {product.price}
-                </p>
-                <p>
-                  <b>quantity :</b>
-                  {product.quantity}
-                </p>
+                <div
+                  className="pic"
+                  css={css`
+                    background-color: grey;
+                    width: 150px;
+                    height: 150px;
+                  `}
+                >
+                  pic
+                </div>
+                <div
+                  className="content"
+                  css={css`
+                    display: flex;
+                    flex-flow: column;
+                  `}
+                >
+                  <p>
+                    <b>name :</b>
+                    {product.name}
+                  </p>
+                  <p>
+                    <b>desc :</b>
+                    {product.desc.length >= 100
+                      ? product.desc.slice(0, 20) + "..."
+                      : product.desc}
+                  </p>
+                  <p>
+                    <b>price :</b>
+                    {product.price}
+                  </p>
+                  <p>
+                    <b>quantity :</b>
+                    {product.quantity}
+                  </p>
+                </div>
+              </div>
+              <div>
+                <SelectedQuantity
+                  selectedPd={selectedPd}
+                  setSelectedPd={setSelectedPd}
+                  product={product}
+                />
               </div>
             </div>
-            <div>
-              <SelectedQuantity
-                selectedPd={selectedPd}
-                setSelectedPd={setSelectedPd}
-                product={product}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-      <div>
-        <Link to="/">
-          <button type="submit">Back</button>
-        </Link>
-        <Link to="/cart">
-          <button onClick={checkOut}>Check out</button>
-        </Link>
+          ))}
+        </div>
+        <div>
+          <Link to="/">
+            <StyledButton type="submit">Back</StyledButton>
+          </Link>
+          <Link to="/cart">
+            <StyledButton onClick={checkOut}>Summary price</StyledButton>
+          </Link>
+        </div>
       </div>
     </div>
   );

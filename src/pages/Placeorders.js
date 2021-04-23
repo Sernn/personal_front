@@ -7,7 +7,6 @@ function Placeorders() {
   const location = useLocation();
   const cart = location.cart;
   const summary = location.summary;
-  console.log(`cart`, cart);
 
   useEffect(() => {}, []);
 
