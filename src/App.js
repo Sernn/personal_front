@@ -9,6 +9,7 @@ import Cart from "./component/Product/Cart";
 import Placeorders from "./pages/Placeorders";
 import AdminLogin from "./component/auth/AdminLogin";
 import CustomerLogin from "./component/auth/CustomerLogin";
+import ManageProduct from "./pages/ManageProduct";
 
 // const privateRoutes = [
 //   {
@@ -46,6 +47,7 @@ function App() {
           component={CustomerRegister}
         ></Route>
         <Route path="/product" exact component={ProductList}></Route>
+        <Route path="/manage-product" exact component={ManageProduct}></Route>
         <Route path="/cart" exact component={Cart}></Route>
         <Route path="/placeorders" exact component={Placeorders}></Route>
       </div>

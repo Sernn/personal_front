@@ -48,7 +48,9 @@ export default function Cart() {
       summary,
       pathname: "/placeorders",
     };
-    alert("your order has been placed");
+    alert(
+      "your order has been placed and our admin will contact you by soonest"
+    );
     history.push(location);
   };
 

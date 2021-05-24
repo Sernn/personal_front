@@ -24,11 +24,11 @@ function Logo() {
           cursor: pointer;
           color: #fff;
           font-weight: bold;
-          font-size: 30px;
+          font-size: 25px;
           padding: 10px;
         `}
       >
-        🍑 Kai TOOD!!
+        We sell EVERYTHING 🤡
       </div>
     </div>
   );

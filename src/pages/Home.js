@@ -35,7 +35,7 @@ function Home() {
           align-items: center;
         `}
       >
-        <h1>Welcome to "🍑 Kai TOOD!!"</h1>
+        <h1>Welcome to "We sell EVERYTHING 🤡"</h1>
         <h4>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam
           tempore, voluptatibus iusto deserunt vel accusamus.

@@ -41,7 +41,7 @@ function AdminLogin() {
       localStorage.setItem("token", res.data.token);
       setIsAuthenticated(true);
       alert("your are now login as admin");
-      history.push("/product");
+      history.push("/manage-product");
     } catch (err) {}
   };
 
